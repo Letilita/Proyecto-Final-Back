@@ -19,14 +19,14 @@ public class CategoriaSkill implements Serializable {
     private Long idCatSkill;
     
     @NotNull
-    private String nombreSkill;
+    private String nombreCatSkill;
 
     public CategoriaSkill() {
     }
 
     public CategoriaSkill(Long idCatSkill, String nombreSkill) {
         this.idCatSkill = idCatSkill;
-        this.nombreSkill = nombreSkill;
+        this.nombreCatSkill = nombreSkill;
     }
     
     
