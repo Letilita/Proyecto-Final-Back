@@ -30,9 +30,8 @@ public class SkillController {
     }
     
     @PostMapping("/agregar")
-    public String agregarSkill(@RequestBody Skill skill){
+    public void agregarSkill(@RequestBody Skill skill){
         interSkill.crearSkill(skill);
-        return "Skill agregada";
     }
     
     @PutMapping("/editar")
@@ -41,8 +40,7 @@ public class SkillController {
     }
     
     @DeleteMapping("/eliminar/{id}")
-    public String eliminarSkill (@PathVariable Long id){
+    public void eliminarSkill (@PathVariable Long id){
         interSkill.borrarSkill(id);
-        return "Skill borrada";
     }
 }
