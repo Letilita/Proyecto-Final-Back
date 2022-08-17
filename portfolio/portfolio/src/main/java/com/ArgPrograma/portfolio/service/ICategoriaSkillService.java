@@ -10,4 +10,5 @@ public interface ICategoriaSkillService {
     public CategoriaSkill editarCategoriaSkill(CategoriaSkill cateSkill);
     public void crearCategoriaSkill(CategoriaSkill cateSkill);
     public void borrarCategoriaSkill (Long id);
+    public CategoriaSkill buscarPorId(Long id);
 }

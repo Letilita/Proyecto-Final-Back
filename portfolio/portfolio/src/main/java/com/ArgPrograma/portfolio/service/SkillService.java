@@ -1,6 +1,7 @@
 
 package com.ArgPrograma.portfolio.service;
 
+import com.ArgPrograma.portfolio.model.CategoriaSkill;
 import com.ArgPrograma.portfolio.model.Skill;
 import com.ArgPrograma.portfolio.repository.SkillRepository;
 import java.util.List;
@@ -31,5 +32,16 @@ public class SkillService implements ISkillService{
     public void borrarSkill(Long id) {
         skillRepo.deleteById(id);
     }
+    
+    @Override
+    public List<Skill> buscarVariosPorCatSkill(CategoriaSkill catSkill){
+    /*for(Long id : ids){
+        borrarSkill(id);*/
+        return skillRepo.findByCatSkill(catSkill);
+    }
+    
+  
+  
+   
     
 }

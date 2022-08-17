@@ -2,7 +2,10 @@
 package com.ArgPrograma.portfolio.controller;
 
 import com.ArgPrograma.portfolio.model.CategoriaSkill;
+import com.ArgPrograma.portfolio.model.Skill;
 import com.ArgPrograma.portfolio.service.ICategoriaSkillService;
+import com.ArgPrograma.portfolio.service.ISkillService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoriaSkillController {
     @Autowired
     private ICategoriaSkillService interCatSkill;
+    @Autowired
+    private ISkillService interSkill;
     
     @GetMapping("/todos")
     @ResponseBody
@@ -41,7 +46,18 @@ public class CategoriaSkillController {
     
     @DeleteMapping("/eliminar/{id}")
     public void eliminarCategoriaSkill (@PathVariable Long id){
-        interCatSkill.borrarCategoriaSkill(id);
+        CategoriaSkill catSkillABorrar = interCatSkill.buscarPorId(id);
+        List<Skill> listaABorrar;
+        listaABorrar = interSkill.buscarVariosPorCatSkill(catSkillABorrar);
+        List<Long> listaDeIdsABorrar = new ArrayList<Long> ();
+        for (Skill skill : listaABorrar ){
+            listaDeIdsABorrar.add(skill.getIdSkill());
+        }
+        for(Long idSkill : listaDeIdsABorrar){
+        interSkill.borrarSkill(idSkill);
+        }       
+        
+        interCatSkill.borrarCategoriaSkill(id); 
     }
 
 }

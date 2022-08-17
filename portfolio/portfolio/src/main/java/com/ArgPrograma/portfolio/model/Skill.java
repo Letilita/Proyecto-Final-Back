@@ -3,6 +3,7 @@ package com.ArgPrograma.portfolio.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class Skill implements Serializable {
     @Column(nullable=false)
     private int avance;
     
-    @ManyToOne
+    @ManyToOne /*(fetch= FetchType.EAGER)*/
     @JoinColumn(name="idCatSkill")
     private CategoriaSkill catSkill;
 

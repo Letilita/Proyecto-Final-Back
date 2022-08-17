@@ -31,4 +31,9 @@ public class CategoriaSkillService implements ICategoriaSkillService {
     public void borrarCategoriaSkill(Long id) {
         catSkillRepo.deleteById(id);
     }
+    
+    @Override
+    public CategoriaSkill buscarPorId(Long id){
+        return catSkillRepo.findById(id).orElse(null);
+    }
 }
