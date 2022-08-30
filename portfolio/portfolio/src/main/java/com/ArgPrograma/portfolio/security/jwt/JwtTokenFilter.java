@@ -20,30 +20,28 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtTokenUtil jwtUtil;
-     /**
-     *
-     * @param request
-     * @param response
-     * @param filterChain
-     * @throws ServletException
-     */
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         if (!hasAuthorizationBearer(request)) {
             filterChain.doFilter(request, response);
+            System.out.println("No tiene autorización la request");
             return;
         }
 
         String token = getAccessToken(request);
+       
 
         if (!jwtUtil.validateAccessToken(token)) {
             filterChain.doFilter(request, response);
+             System.out.println("Método validateAccesToken: " + token);
             return;
         }
 
         setAuthenticationContext(token, request);
+        System.out.println("Ya seteó AuthenticationContext");
         filterChain.doFilter(request, response);
 
     }
@@ -51,7 +49,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     private boolean hasAuthorizationBearer(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
 
-        if (ObjectUtils.isEmpty(header) || header.startsWith("Bearer")) {
+        if (ObjectUtils.isEmpty(header) || !header.startsWith("Bearer")) {
             return false;
         }
         return true;
@@ -59,7 +57,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     private String getAccessToken(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
-        String token = header.split("")[1].trim();
+        String token = header.split(" ")[1].trim();
         return token;
     }
 

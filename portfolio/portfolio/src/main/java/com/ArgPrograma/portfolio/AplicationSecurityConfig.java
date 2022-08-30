@@ -25,6 +25,8 @@ public class AplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserRepository userRepo;
     @Autowired
     private JwtTokenFilter jwtTokenFilter;
+    
+    
 
     @Bean
     PasswordEncoder passwordEncoder() {
@@ -51,7 +53,7 @@ public class AplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/api/**").permitAll()
                 .antMatchers("/**/todos").permitAll()
                 .antMatchers("/**/todas").permitAll()
-                .antMatchers("/usuario/**").permitAll()
+                .antMatchers("/usuario/id/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();

@@ -1,7 +1,10 @@
 
 package com.ArgPrograma.portfolio.security;
 
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
 public class AuthResponse {
    private String email;
    private String accessToken;  

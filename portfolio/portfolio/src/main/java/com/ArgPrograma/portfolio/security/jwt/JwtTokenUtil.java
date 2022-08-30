@@ -38,6 +38,7 @@ public class JwtTokenUtil {
     
     public boolean validateAccessToken(String token){
         try{
+            
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
                     return true;
         }catch(ExpiredJwtException ex){
@@ -45,6 +46,7 @@ public class JwtTokenUtil {
         }catch(IllegalArgumentException ex){
             LOGGER.error("Token nulo o vacío");
         }catch(MalformedJwtException ex){
+            System.out.println(token);
             LOGGER.error("Token inválido", ex);
         }catch(UnsupportedJwtException ex){
             LOGGER.error("JWT is not supported", ex);

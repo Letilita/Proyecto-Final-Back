@@ -23,7 +23,7 @@ public class UsuarioController {
     @Autowired
     private IUsuarioService interUsuario;
     
-    @GetMapping("id/{id}")
+    @GetMapping("/id/{id}")
     @ResponseBody
     public Usuario leerUsuario(@PathVariable("id") Long id){        
         return interUsuario.buscarUsuario(id);
