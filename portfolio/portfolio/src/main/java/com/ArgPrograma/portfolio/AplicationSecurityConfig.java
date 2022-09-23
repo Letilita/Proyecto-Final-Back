@@ -56,6 +56,7 @@ public class AplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/todos").permitAll()
                 .antMatchers("/**/todas").permitAll()
                 .antMatchers("/usuario/id/**").permitAll()
+                .antMatchers("/Mail/enviar").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();
