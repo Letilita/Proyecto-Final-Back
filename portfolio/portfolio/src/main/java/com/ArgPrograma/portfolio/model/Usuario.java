@@ -33,7 +33,7 @@ public class Usuario implements Serializable{
     private String linkGH;
     private String linkIG;
     private String imagenPersonal;
-    
+    private String cv;
     @Column(length=2000)
     private String descripcion;
     
